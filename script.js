@@ -21,13 +21,14 @@ function buildUI(data) {
     setAttribute(card, 'class', 'card col-md-3 col-lg-2 col-sm-4 col-xs-6');
     appendChild(contentRow, card);
 
-    let h6 = createElement('h6');
-    h6.innerText = data[i].name;
-    appendChild(card, h6);
+    let cardHeader = createElement('div');
+    setAttribute(cardHeader, 'class', 'card-header country-title');
+    cardHeader.innerText = data[i].name;
+    appendChild(card, cardHeader);
 
     let img = createElement('img');
     img.src = data[i].flag;
-    setAttribute(img, 'class', 'card-img-top');
+    setAttribute(img, 'class', 'card-img-top flag');
     appendChild(card, img);
 
     let capitalDiv = createElement('div');
@@ -64,12 +65,16 @@ function buildUI(data) {
     region.innerText = data[i].region;
     appendChild(regionDiv, region);
 
+    let btnDiv = createElement('div');
+    setAttribute(btnDiv, 'class', 'weather-button')
+    appendChild(card, btnDiv);
+
     let weatherBtn = createElement('button');
     setAttribute(weatherBtn, 'type', 'button');
-    setAttribute(weatherBtn, 'class', 'btn btn-xs btn-dark');
+    setAttribute(weatherBtn, 'class', 'btn btn-xs btn-outline-light');
     weatherBtn.innerText = 'Click for Weather';
     setAttribute(weatherBtn, 'onclick', `getWeather(${data[i].latlng[0]},${data[i].latlng[1]},${i})`);
-    appendChild(card, weatherBtn);
+    appendChild(btnDiv, weatherBtn);
 
     let weatherDiv = createElement('i');
     setAttribute(weatherDiv, 'id', `country${i}`);
